@@ -26,7 +26,7 @@ with open(os.path.join(version_folder, "verl/version/version")) as f:
 install_requires = [
     "accelerate",
     "codetiming",
-    "datasets",
+    "datasets>=2.20.0", # https://github.com/huggingface/datasets/issues/7742
     "dill",
     "hydra-core",
     "numpy<2.0.0",
@@ -45,7 +45,6 @@ install_requires = [
 ]
 
 TEST_REQUIRES = ["pytest", "pre-commit", "py-spy", "pytest-asyncio", "pytest-rerunfailures"]
-PRIME_REQUIRES = ["pyext"]
 GEO_REQUIRES = ["mathruler", "torchvision", "qwen_vl_utils"]
 GPU_REQUIRES = ["liger-kernel", "flash-attn"]
 MATH_REQUIRES = ["math-verify"]  # Add math-verify as an optional dependency
@@ -61,7 +60,6 @@ TRANSFERQUEUE_REQUIRES = ["TransferQueue==0.1.5.dev3"]
 
 extras_require = {
     "test": TEST_REQUIRES,
-    "prime": PRIME_REQUIRES,
     "geo": GEO_REQUIRES,
     "gpu": GPU_REQUIRES,
     "math": MATH_REQUIRES,

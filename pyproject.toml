@@ -13,8 +13,8 @@ build-backend = "setuptools.build_meta"
 # -------------------------------
 [project]
 name = "verl"
-# We'll mark the version as "dynamic" because it's read from the file "verl/version/version" 
-# (PEP 621 calls this "dynamic version"). 
+# We'll mark the version as "dynamic" because it's read from the file "verl/version/version"
+# (PEP 621 calls this "dynamic version").
 # The actual version is specified in the [tool.setuptools.dynamic] section below.
 dynamic = ["version", "dependencies", "optional-dependencies", "authors", "urls"]
 
@@ -111,3 +111,17 @@ verl = [
   "trainer/config/*.yaml",
   "trainer/config/*/*.yaml",
 ]
+
+[tool.uv]
+conflicts = [
+    [
+      { extra = "vllm" },
+      { extra = "sglang" },
+    ],
+]
+
+[tool.uv.extra-build-dependencies]
+flash-attn = [{ requirement = "torch", match-runtime = true }]
+
+[tool.uv.extra-build-variables]
+flash-attn = { FLASH_ATTENTION_FORCE_BUILD = "TRUE" }
